@@ -30,7 +30,26 @@ namespace RPG.Services.CharacterService
             characters.Add(character);
             serviceResponse.Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList();
             return serviceResponse;
-        } 
+        }
+
+        public async Task<ServiceResponse<List<GetCharacterDTO>>> DeleteCharacter(int id)
+        {
+            ServiceResponse<List<GetCharacterDTO>> serviceResponce = new ServiceResponse<List<GetCharacterDTO>>();
+            try
+            {
+                Character character = characters.First(c => c.Id == id);
+                characters.Remove(character);
+
+                serviceResponce.Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList();
+            }
+            catch (Exception ex)
+            {
+                serviceResponce.Success = false;
+                serviceResponce.Message = ex.Message;
+            }
+
+            return serviceResponce;
+        }
 
         public async Task<ServiceResponse<List<GetCharacterDTO>>> GetAllCharacters()
         {
