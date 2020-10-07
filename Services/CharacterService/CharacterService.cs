@@ -1,4 +1,5 @@
-﻿using RPG.Models;
+﻿using RPG.DTOs.Characters;
+using RPG.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,30 +13,29 @@ namespace RPG.Services.CharacterService
             new Character(),
             new Character { Id = 1,  Name = "Sam" }
         };
-        private readonly ICharacterService characterService;
 
-        public async Task<ServiceResponse<List<Character>>> AddCharacter(Character newCharacter)
+        public async Task<ServiceResponse<List<GetCharacterDTO>>> AddCharacter(AddCharacterDTO newCharacter)
         {
-            ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>
+            ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>
             {
                 Data = characters
             };
             serviceResponse.Data = characters;
             return serviceResponse;
-        }
+        } 
 
-        public async Task<ServiceResponse<List<Character>>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacterDTO>>> GetAllCharacters()
         {
-            ServiceResponse<List<Character>> serviceResponse = new ServiceResponse<List<Character>>
+            ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>
             {
                 Data = characters
             };
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<Character>> GetCharacterById(int id)
+        public async Task<ServiceResponse<GetCharacterDTO>> GetCharacterById(int id)
         {
-            ServiceResponse<Character> serviceResponse = new ServiceResponse<Character>()
+            ServiceResponse<GetCharacterDTO> serviceResponse = new ServiceResponse<GetCharacterDTO>()
             {
                 Data = characters.FirstOrDefault(c => c.Id == id)
             };
