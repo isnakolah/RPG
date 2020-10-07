@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RPG.Services.CharacterService
 {
-    interface ICharacterService
+    public interface ICharacterService
     {
         List<Character> GetAllCharacters();
         Character GetCharacterById(int id);
