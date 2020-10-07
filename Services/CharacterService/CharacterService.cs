@@ -1,4 +1,5 @@
-﻿using RPG.DTOs.Characters;
+﻿using AutoMapper;
+using RPG.DTOs.Characters;
 using RPG.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,18 @@ namespace RPG.Services.CharacterService
             new Character(),
             new Character { Id = 1,  Name = "Sam" }
         };
+        private readonly IMapper _mapper;
+
+        public CharacterService(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
 
         public async Task<ServiceResponse<List<GetCharacterDTO>>> AddCharacter(AddCharacterDTO newCharacter)
         {
-            ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>
-            {
-                Data = characters
-            };
-            serviceResponse.Data = characters;
+            ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>();
+            characters.Add(_mapper.Map<Character>(newCharacter));
+            serviceResponse.Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList();
             return serviceResponse;
         } 
 
@@ -28,7 +33,7 @@ namespace RPG.Services.CharacterService
         {
             ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>
             {
-                Data = characters
+                Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList()
             };
             return serviceResponse;
         }
@@ -37,7 +42,7 @@ namespace RPG.Services.CharacterService
         {
             ServiceResponse<GetCharacterDTO> serviceResponse = new ServiceResponse<GetCharacterDTO>()
             {
-                Data = characters.FirstOrDefault(c => c.Id == id)
+                Data = _mapper.Map<GetCharacterDTO>(characters.FirstOrDefault(c => c.Id == id))
             };
             return serviceResponse;
         }
