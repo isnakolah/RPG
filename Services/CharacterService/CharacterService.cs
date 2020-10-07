@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using RPG.DTOs.Characters;
 using RPG.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,16 +53,22 @@ namespace RPG.Services.CharacterService
         public async Task<ServiceResponse<GetCharacterDTO>> UpdateCharacter(UpdateCharacterDTO updatedCharacter)
         {
             ServiceResponse<GetCharacterDTO> serviceResponce = new ServiceResponse<GetCharacterDTO>();
+            try { 
+                Character character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id);
+                character.Name = updatedCharacter.Name;
+                character.Class = updatedCharacter.Class;
+                character.Defence = updatedCharacter.Defence;
+                character.HitPoints = updatedCharacter.HitPoints;
+                character.Intelligence = updatedCharacter.Intelligence;
+                character.Strength = updatedCharacter.Strength;
 
-            Character character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id);
-            character.Name = updatedCharacter.Name;
-            character.Class = updatedCharacter.Class;
-            character.Defence = updatedCharacter.Defence;
-            character.HitPoints = updatedCharacter.HitPoints;
-            character.Intelligence = updatedCharacter.Intelligence;
-            character.Strength = updatedCharacter.Strength;
-
-            serviceResponce.Data = _mapper.Map<GetCharacterDTO>(character);
+                serviceResponce.Data = _mapper.Map<GetCharacterDTO>(character);
+            }
+            catch (Exception ex) 
+            {
+                serviceResponce.Success = false;
+                serviceResponce.Message = ex.Message;
+            }
 
             return serviceResponce;
         }

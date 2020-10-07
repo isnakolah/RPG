@@ -40,7 +40,12 @@ namespace RPG.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCharacter(UpdateCharacterDTO updatedCharacter)
         {
-            return Ok(await _characterService.UpdateCharacter(updatedCharacter));
+            ServiceResponse<GetCharacterDTO> response = await _characterService.UpdateCharacter(updatedCharacter);
+            if(response.Data == null)
+            {
+                return NotFound(response);
+            }
+            return Ok(response);
         }
     }
 }
