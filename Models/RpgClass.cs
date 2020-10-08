@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RPG.Models
+﻿namespace RPG.Models
 {
     public enum RpgClass
     {

@@ -3,7 +3,6 @@ using RPG.DTOs.Characters;
 using RPG.Models;
 using RPG.Services.CharacterService;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace RPG.Controllers
