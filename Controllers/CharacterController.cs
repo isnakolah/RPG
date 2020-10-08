@@ -18,7 +18,7 @@ namespace RPG.Controllers
             _characterService = characterService;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await _characterService.GetAllCharacters());

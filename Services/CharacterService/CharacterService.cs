@@ -38,7 +38,11 @@ namespace RPG.Services.CharacterService
             try
             {
                 Character character = characters.First(c => c.Id == id);
-                characters.Remove(character);
+                // Hard deleting a character
+                // characters.Remove(character);
+
+                // Soft deleting a character
+                character.Deleted = true;
 
                 serviceResponce.Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList();
             }
