@@ -59,7 +59,8 @@ namespace RPG.Services.CharacterService
         {
             ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>
             {
-                Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList()
+                Data = characters.Select(c => _mapper.Map<GetCharacterDTO>(c)).ToList()
+                //Data = _mapper.Map<GetCharacterDTO>(characters.Select(c => c.Deleted == false))
             };
             return serviceResponse;
         }
