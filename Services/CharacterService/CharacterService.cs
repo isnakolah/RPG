@@ -57,11 +57,14 @@ namespace RPG.Services.CharacterService
 
         public async Task<ServiceResponse<List<GetCharacterDTO>>> GetAllCharacters()
         {
-            ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>
-            {
-                Data = characters.Select(c => _mapper.Map<GetCharacterDTO>(c)).ToList()
-                //Data = _mapper.Map<GetCharacterDTO>(characters.Select(c => c.Deleted == false))
-            };
+            ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>();
+
+            IEnumerable<Character> validCharacters =
+                from character in characters
+                where character.Deleted == false
+                select character;
+
+            serviceResponse.Data = validCharacters.Select(c => _mapper.Map<GetCharacterDTO>(c)).ToList();
             return serviceResponse;
         }
 

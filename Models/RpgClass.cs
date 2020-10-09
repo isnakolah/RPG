@@ -1,6 +1,6 @@
 ﻿namespace RPG.Models
 {
-    public enum RpgClass
+    public enum RpgClass : short
     {
         Knight = 1, 
         Mage = 2, 

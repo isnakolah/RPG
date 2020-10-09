@@ -1,4 +1,5 @@
 ﻿using RPG.Models;
+using System;
 
 namespace RPG.DTOs.Characters
 {
@@ -12,5 +13,6 @@ namespace RPG.DTOs.Characters
         public int Intelligence { get; set; } = 10;
         public RpgClass Class { get; set; } = RpgClass.Knight;
         public bool Deleted { get; set; } = false;
+        public DateTime DateCreated { get; } = DateTime.UtcNow;
     }
 }
