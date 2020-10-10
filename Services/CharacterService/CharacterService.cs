@@ -22,6 +22,15 @@ namespace RPG.Services.CharacterService
             _mapper = mapper;
         }
 
+        //private IEnumerable<Character> validCharacters(Character characters)
+        //{
+        //    IEnumerable<Character> validCharacters =
+        //        from character in characters
+        //        where character.Deleted == false
+        //        select character;
+        //    return validCharacters;
+        //}
+
         public async Task<ServiceResponse<List<GetCharacterDTO>>> AddCharacter(AddCharacterDTO newCharacter)
         {
             ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>();
@@ -38,13 +47,21 @@ namespace RPG.Services.CharacterService
             try
             {
                 Character character = characters.First(c => c.Id == id);
-                // Hard deleting a character
-                // characters.Remove(character);
+                if (character.Deleted == true)
+                {
+                    serviceResponce.Success = false;
+                    serviceResponce.Message = "You cannot delete an already deleted character";
+                }
+                else
+                {
+                    // Hard deleting a character
+                    // characters.Remove(character);
 
-                // Soft deleting a character
-                character.Deleted = true;
+                    // Soft deleting a character
+                    character.Deleted = true;
 
-                serviceResponce.Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList();
+                    serviceResponce.Data = (characters.Select(c => _mapper.Map<GetCharacterDTO>(c))).ToList();
+                }
             }
             catch (Exception ex)
             {
