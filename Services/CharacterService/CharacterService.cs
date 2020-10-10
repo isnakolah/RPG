@@ -87,10 +87,35 @@ namespace RPG.Services.CharacterService
 
         public async Task<ServiceResponse<GetCharacterDTO>> GetCharacterById(int id)
         {
-            ServiceResponse<GetCharacterDTO> serviceResponse = new ServiceResponse<GetCharacterDTO>()
+            ServiceResponse<GetCharacterDTO> serviceResponse = new ServiceResponse<GetCharacterDTO>();
+            //IEnumerable<Character> validCharacters =
+            //    from character in characters
+            //    where character.Deleted == false
+            //    select character;
+
+            // Making sure the character being requested exists
+            try 
+            { 
+                Character character = characters.FirstOrDefault(c => c.Id == id);
+
+                // Checking if the character is deleted
+                if (character.Deleted == true)
+                {
+                    serviceResponse.Success = false;
+                    serviceResponse.Message = "This character has been deleted";
+                }
+                else
+                {
+                    serviceResponse.Data = _mapper.Map<GetCharacterDTO>(character);
+                }
+            }
+            catch (Exception ex) 
             {
-                Data = _mapper.Map<GetCharacterDTO>(characters.FirstOrDefault(c => c.Id == id))
-            };
+                serviceResponse.Success = false;
+                serviceResponse.Message = ex.Message;
+            }
+
+
             return serviceResponse;
         }
 
