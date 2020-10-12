@@ -22,15 +22,6 @@ namespace RPG.Services.CharacterService
             _mapper = mapper;
         }
 
-        //private IEnumerable<Character> validCharacters(Character characters)
-        //{
-        //    IEnumerable<Character> validCharacters =
-        //        from character in characters
-        //        where character.Deleted == false
-        //        select character;
-        //    return validCharacters;
-        //}
-
         public async Task<ServiceResponse<List<GetCharacterDTO>>> AddCharacter(AddCharacterDTO newCharacter)
         {
             ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>();
@@ -76,10 +67,8 @@ namespace RPG.Services.CharacterService
         {
             ServiceResponse<List<GetCharacterDTO>> serviceResponse = new ServiceResponse<List<GetCharacterDTO>>();
 
-            IEnumerable<Character> validCharacters =
-                from character in characters
-                where character.Deleted == false
-                select character;
+            // Getting the characters that aren't deleted.
+            IEnumerable<Character> validCharacters = characters.Where(character => character.Deleted == false);
 
             serviceResponse.Data = validCharacters.Select(c => _mapper.Map<GetCharacterDTO>(c)).ToList();
             return serviceResponse;
@@ -88,10 +77,6 @@ namespace RPG.Services.CharacterService
         public async Task<ServiceResponse<GetCharacterDTO>> GetCharacterById(int id)
         {
             ServiceResponse<GetCharacterDTO> serviceResponse = new ServiceResponse<GetCharacterDTO>();
-            //IEnumerable<Character> validCharacters =
-            //    from character in characters
-            //    where character.Deleted == false
-            //    select character;
 
             // Making sure the character being requested exists
             try 
@@ -124,12 +109,22 @@ namespace RPG.Services.CharacterService
             ServiceResponse<GetCharacterDTO> serviceResponce = new ServiceResponse<GetCharacterDTO>();
             try { 
                 Character character = characters.FirstOrDefault(c => c.Id == updatedCharacter.Id);
-                character.Name = updatedCharacter.Name;
-                character.Class = updatedCharacter.Class;
-                character.Defence = updatedCharacter.Defence;
-                character.HitPoints = updatedCharacter.HitPoints;
-                character.Intelligence = updatedCharacter.Intelligence;
-                character.Strength = updatedCharacter.Strength;
+                
+                if (character.Deleted == true)
+                {
+                    serviceResponce.Success = false;
+                    serviceResponce.Message = "This character has been deleted";
+                }
+                else
+                {
+                    character.Name = updatedCharacter.Name;
+                    character.Class = updatedCharacter.Class;
+                    character.Defence = updatedCharacter.Defence;
+                    character.HitPoints = updatedCharacter.HitPoints;
+                    character.Intelligence = updatedCharacter.Intelligence;
+                    character.Strength = updatedCharacter.Strength;
+                }
+
 
                 serviceResponce.Data = _mapper.Map<GetCharacterDTO>(character);
             }
