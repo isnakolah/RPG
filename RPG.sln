@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{372BD07F-5404-46C0-82FC-322509FF7EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG", "src\RPG\RPG.csproj", "{BBE86AC7-0ED1-4B9E-B66D-7D4CD6B14A30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPG", "src\RPG\RPG.csproj", "{BBE86AC7-0ED1-4B9E-B66D-7D4CD6B14A30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{169FA204-E594-4C62-8055-5321F58EB256}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGTests", "RPGTests\RPGTests.csproj", "{036055D7-FCA1-4884-AC9F-007BCE1D04DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BBE86AC7-0ED1-4B9E-B66D-7D4CD6B14A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -34,20 +33,27 @@ Global
 		{BBE86AC7-0ED1-4B9E-B66D-7D4CD6B14A30}.Release|x64.Build.0 = Release|Any CPU
 		{BBE86AC7-0ED1-4B9E-B66D-7D4CD6B14A30}.Release|x86.ActiveCfg = Release|Any CPU
 		{BBE86AC7-0ED1-4B9E-B66D-7D4CD6B14A30}.Release|x86.Build.0 = Release|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Debug|x64.Build.0 = Debug|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Debug|x86.Build.0 = Debug|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Release|x64.ActiveCfg = Release|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Release|x64.Build.0 = Release|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Release|x86.ActiveCfg = Release|Any CPU
-		{9E2228B7-5C4F-4BCE-8F9D-9DCD4F300DCC}.Release|x86.Build.0 = Release|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Debug|x64.Build.0 = Debug|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Debug|x86.Build.0 = Debug|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Release|x64.ActiveCfg = Release|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Release|x64.Build.0 = Release|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Release|x86.ActiveCfg = Release|Any CPU
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BBE86AC7-0ED1-4B9E-B66D-7D4CD6B14A30} = {372BD07F-5404-46C0-82FC-322509FF7EC5}
+		{036055D7-FCA1-4884-AC9F-007BCE1D04DE} = {169FA204-E594-4C62-8055-5321F58EB256}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A8DE5439-9AEA-4F83-B295-817EC60B9E37}
 	EndGlobalSection
 EndGlobal
